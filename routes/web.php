@@ -13,6 +13,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/welcome', function () {
+//     return view('welcome');
+// });
+
+// Route::get('posts/{post}', function ($post) {
+//     $posts = [
+//         'my-first-post' => 'This is my first blog post.',
+//         'my-second-post' => 'This is my second blog post'
+//     ];
+
+//     if (!array_key_exists($post, $posts)){
+//         abort(404, 'Page not found!');
+//     }
+
+//     $context = [
+//         'post'=> $posts[$post] 
+//     ];
+
+//     return view('test', $context);
+// });
+
+Route::get('posts/{post}', 'postController@show');
