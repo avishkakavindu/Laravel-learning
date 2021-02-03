@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <h1>{{ $post }} </h1>
-       
+        <h1>id: {{ $post -> id }}<br>{{ $post->slug }}<br>{{ $post->body }} </h1>
+
     </body>
 </html>
