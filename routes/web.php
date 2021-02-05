@@ -32,10 +32,20 @@ use Illuminate\Support\Facades\Route;
 //     }
 
 //     $context = [
-//         'post'=> $posts[$post] 
+//         'post'=> $posts[$post]
 //     ];
 
 //     return view('test', $context);
 // });
+
+Route::get('', function(){
+    return view('welcome');
+});
+Route::get('contact', function(){
+    return view('contact');
+});
+Route::get('about', function(){
+    return view('about');
+});
 
 Route::get('posts/{post}', 'postController@show');
