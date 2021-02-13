@@ -45,7 +45,12 @@ Route::get('contact', function(){
     return view('contact');
 });
 Route::get('about', function(){
-    return view('about');
+    $article = App\Article::take(3)->latest()->get();
+    $context = [
+        'articles'=>$article,
+    ];
+
+    return view('about', $context);
 });
 
 Route::get('posts/{post}', 'postController@show');
