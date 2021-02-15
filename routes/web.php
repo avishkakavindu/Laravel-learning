@@ -41,9 +41,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('', function(){
     return view('welcome');
 });
+
 Route::get('contact', function(){
     return view('contact');
 });
+
+Route::get('article', 'ArticleController@index');
+
 Route::get('about', function(){
     $article = App\Article::take(3)->latest()->get();
     $context = [
@@ -53,4 +57,7 @@ Route::get('about', function(){
     return view('about', $context);
 });
 
+Route::post('article', 'ArticleController@store');
+Route::get('article/create', 'ArticleController@create');
+Route::get('article/{article}', 'ArticleController@show');
 Route::get('posts/{post}', 'postController@show');

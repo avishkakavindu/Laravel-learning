@@ -17,7 +17,7 @@
                     @foreach ($articles as $article)
                     <li class="first">
                         <h3>{{ $article->title }}</h3>
-                        <p><a href="#">{{ $article->excetpt }}</a></p>
+                        <p><a href="article/{{ $article->id }}">{{ $article->excerpt }}</a></p>
                     </li>
                     @endforeach
                 </ul>
