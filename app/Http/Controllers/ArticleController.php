@@ -21,11 +21,8 @@ class ArticleController extends Controller
     }
 
 
-    public function show($article_id){
+    public function show(Article $article){
         // Render a single resource
-
-        $article = Article::find($article_id);
-
         $context = [
             'article'=>$article
         ];
@@ -41,12 +38,36 @@ class ArticleController extends Controller
 
 
     public function store(){
-        $article = new Article();
 
-        $article->title = request('title');
-        $article->excerpt = request('excerpt');
-        $article->body = request('body');
-        $article->save();
-        return redirect('/article');
+        Article::create($this->validateArticle());
+        return redirect(route('article.index'));
+    }
+
+
+    public function edit(Article $article){
+        $context = [
+            'article'=>$article
+        ];
+        return view('article.edit', $context);
+    }
+
+
+    public function update(Article $article){
+
+        $article->update($this->validateArticle());
+
+        return redirect('/article/'.$article->id);
+    }
+
+    /**
+     * @return array
+     */
+    public function validateArticle(): array
+    {
+        return request()->validate([
+            'title' => 'required',
+            'excerpt' => 'required',
+            'body' => 'required'
+        ]);
     }
 }

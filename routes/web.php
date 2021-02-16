@@ -46,7 +46,6 @@ Route::get('contact', function(){
     return view('contact');
 });
 
-Route::get('article', 'ArticleController@index');
 
 Route::get('about', function(){
     $article = App\Article::take(3)->latest()->get();
@@ -57,7 +56,10 @@ Route::get('about', function(){
     return view('about', $context);
 });
 
+Route::get('article', 'ArticleController@index')->name('article.index');
 Route::post('article', 'ArticleController@store');
 Route::get('article/create', 'ArticleController@create');
-Route::get('article/{article}', 'ArticleController@show');
+Route::get('article/{article}', 'ArticleController@show')->name('article.show');
+Route::get('article/{article}/edit', 'ArticleController@edit');
+Route::put('article/{article}', 'ArticleController@update');
 Route::get('posts/{post}', 'postController@show');
