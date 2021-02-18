@@ -40,13 +40,24 @@ class ArticleController extends Controller
 
     public function create(){
         // Show a view to create a new  resource
-        return view('article.create');
+        $tags = Tag::all();
+
+        $context = [
+            'tags'=>$tags
+        ];
+        return view('article.create', $context);
     }
 
 
     public function store(){
+        // validate first
+        $this->validateArticle();
+        // if valid
+        $article = new Article(request(['title', 'excerpt', 'body']));
+        $article->user_id = 1;   // hard-coding
+        $article->save();
 
-        Article::create($this->validateArticle());
+        $article->tags()->attach(request('tags'));
         return redirect(route('article.index'));
     }
 
@@ -74,7 +85,8 @@ class ArticleController extends Controller
         return request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
-            'body' => 'required'
+            'body' => 'required',
+            'tags' => 'exists:tags,id'
         ]);
     }
 }
