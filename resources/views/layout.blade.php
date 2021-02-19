@@ -36,6 +36,25 @@ Released   : 20140225
                     <li class="{{ Request::path() ==='about'? 'current_page_item':'' }}"><a href="/about" accesskey="3" title="">About Us</a></li>
                     <li class="{{ Request::path() ==='article'? 'current_page_item':'' }}"><a href="/article" accesskey="4" title="">Articles</a></li>
                     <li class="{{ Request::path() ==='contact'? 'current_page_item':'' }}"><a href="#" accesskey="5" title="">Contact Us</a></li>
+                    @auth
+                        <li>
+                            <a href="/logout">
+                                <button class="button is-link">logout - {{ Auth::user()->name }}</button>
+                            </a>
+                        </li>
+                    @else
+                        <li>
+                            <a href="/login">
+                                <button class="button is-link">SignIn</button>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/register">
+                                <button class="button is-link">Register</button>
+                            </a>
+                        </li>
+                    @endauth
+
                 </ul>
             </div>
         </div>

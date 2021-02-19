@@ -63,3 +63,7 @@ Route::get('article/{article}', 'ArticleController@show')->name('article.show');
 Route::get('article/{article}/edit', 'ArticleController@edit');
 Route::put('article/{article}', 'ArticleController@update');
 Route::get('posts/{post}', 'postController@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
